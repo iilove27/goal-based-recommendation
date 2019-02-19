@@ -4,6 +4,7 @@ from torch.autograd import Variable
 import myLSTM as LSTM
 import pickle
 import numpy as np
+import pandas as pd
 import torch.utils.data as Data
 from data_process import get_data_from_condense_seq, process_data
 from evaluate_cat_cat import evaluate_loss, evaluate_accuracy
@@ -147,15 +148,18 @@ if __name__ == '__main__':
     print("Load data")
     subtrain_data, vali_data = get_data_from_condense_seq(time)
 
-    f = open('../../RNN/data_preprocess/course_id.pkl', 'rb')
-    course_id = pickle.load(f)['course_id']
-    f = open('../../RNN2/data_preprocess/major_id.pkl', 'rb')
-    major_id = pickle.load(f)['major_id']
-    f.close()
+    # f = open('../../RNN/data_preprocess/course_id.pkl', 'rb')
+    # course_id = pickle.load(f)['course_id']
+    # f = open('../../RNN2/data_preprocess/major_id.pkl', 'rb')
+    # major_id = pickle.load(f)['major_id']
+    # f.close()
+    course_id = pd.read_msgpack("course_df.msg")
+
     # input is the concat of grade and course in the next semester
     dim_input_course = len(course_id)
     dim_input_grade = len(course_id) * 4
-    dim_input_major = len(major_id)
+    # dim_input_major = len(major_id)
+    dim_input_major = 2
 
     #  training
     print("Training Begin")

@@ -18,8 +18,8 @@ def empty(check):
 
 
 def get_data_from_condense_seq(t):  # t==22, subtraining and validation; t==25, training and testing
-    f = open('../../RNN2/data_preprocess/stu_sem_major_grade_condense.pkl', 'rb')
-    data = pickle.load(f)['stu_sem_major_grade_condense']
+    f = open('berkeleyData.pkl', 'rb')
+    data = pickle.load(f)
     # data is a nested list, each row is a list: [{'major': major_id, 'grade': [course_id, grade_id]},{...},...{...}], each {} is for a semester.
     data = np.array(data)
     train = data[:, :t]
