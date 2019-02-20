@@ -6,6 +6,7 @@ from torch.nn import functional as F
 import myLSTM as LSTM
 import pickle
 import numpy as np
+import pandas as pd
 import torch.utils.data as Data
 from data_process import process_data, get_data_from_condense_seq
 from metrics import accuracy, sensitivity
