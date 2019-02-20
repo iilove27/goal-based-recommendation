@@ -88,22 +88,22 @@ def sensitivity(output, out_len, label):
     predict_false[0] = len(np.where(real_output1 == 1)[0])
 
     # credit / uncredit
-    real_label2 = real_label[:, 2:]
-    real_output2 = real_output[:, 2:]
-    l2 = torch.sum(real_label2, dim=1)
-    l2 = torch.nonzero(l2).view(-1)
-
-    real_output2 = real_output2[l2]
-    real_output2 = real_output2.max(dim=1)[1].data.cpu().numpy()
-    real_label2 = torch.nonzero(real_label2)[:, 1].data.cpu().numpy()
-    hit2 = np.where(real_label2 - real_output2 == 0)[0]
-    tp[1] = len(np.where(real_label2[hit2] == 0)[0])
-    tn[1] = len(np.where(real_label2[hit2] == 1)[0])
-    true[1] = len(np.where(real_label2 == 0)[0])
-    false[1] = len(np.where(real_label2 == 1)[0])
-    predict_true[1] = len(np.where(real_output2 == 0)[0])
-    predict_false[1] = len(np.where(real_output2 == 1)[0])
-    print(tp, tn, true, false, predict_true, predict_false)
+    # real_label2 = real_label[:, 2:]
+    # real_output2 = real_output[:, 2:]
+    # l2 = torch.sum(real_label2, dim=1)
+    # l2 = torch.nonzero(l2).view(-1)
+    #
+    # real_output2 = real_output2[l2]
+    # real_output2 = real_output2.max(dim=1)[1].data.cpu().numpy()
+    # real_label2 = torch.nonzero(real_label2)[:, 1].data.cpu().numpy()
+    # hit2 = np.where(real_label2 - real_output2 == 0)[0]
+    # tp[1] = len(np.where(real_label2[hit2] == 0)[0])
+    # tn[1] = len(np.where(real_label2[hit2] == 1)[0])
+    # true[1] = len(np.where(real_label2 == 0)[0])
+    # false[1] = len(np.where(real_label2 == 1)[0])
+    # predict_true[1] = len(np.where(real_output2 == 0)[0])
+    # predict_false[1] = len(np.where(real_output2 == 1)[0])
+    # print(tp, tn, true, false, predict_true, predict_false)
     return tp, tn, true, false, predict_true, predict_false
 
 
