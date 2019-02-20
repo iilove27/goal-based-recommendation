@@ -12,6 +12,7 @@ from torch.nn.utils import clip_grad_norm
 torch.manual_seed(1)    # reproducible
 
 
+
 def train(model, optimizer, loader, train_data, epoch, weight1, weight2):
 
     model.train()
@@ -29,6 +30,7 @@ def train(model, optimizer, loader, train_data, epoch, weight1, weight2):
         model.hidden[0] = model.hidden[0].cuda()
         model.hidden[1] = model.hidden[1].cuda()
         y_pred = model(padded_input, seq_len).cuda()
+
         loss = model.loss(y_pred, padded_label, weight1, weight2).cuda()
         print('Epoch ' + str(epoch) + ': ' + 'The '+str(step+1)+'-th interation: loss'+str(loss.data[0])+'\n')
         loss.backward()
@@ -140,9 +142,9 @@ if __name__ == '__main__':
 
     # subtrain or train
     if train_or_subtrain == 'subtrain':
-        time = 22
+        time = 8
     else:
-        time = 25
+        time = 10
 
     # load data
     print("Load data")

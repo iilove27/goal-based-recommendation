@@ -117,21 +117,21 @@ def evaluate_metrics(model, loader, vali_data, batchsize, dim_input_course, dim_
     print("num of >=B or <B: ", len1, "num of credit/uncredit: ", len2)
     print("On average: ", average_metric1, average_metric2, average_metric)
 
-    tpr = tp / true
-    fpr = (predict_true - tp) / false
-    fnr = (predict_false - tn) / true
-    tnr = tn / false
-
-    precision_B = (tn / predict_false)[0]
-    f_value_B = 2 / (1 / tnr[0] + 1 / precision_B)
-    precision_uncredit = (tn / predict_false)[-1]
-    f_value_uncredit = 2 / (1 / tnr[-1] + 1 / precision_uncredit)
-    f_value = np.append(f_value_B, f_value_uncredit)
-    print("tpr: ", tpr)
-    print("fpr: ", fpr)
-    print("fnr: ", fnr)
-    print("tnr: ", tnr)
-    print('F: ', f_value, 'average F:', np.average(f_value))
+    # tpr = tp / true
+    # fpr = (predict_true - tp) / false
+    # fnr = (predict_false - tn) / true
+    # tnr = tn / false
+    #
+    # precision_B = (tn / predict_false)[0]
+    # f_value_B = 2 / (1 / tnr[0] + 1 / precision_B)
+    # precision_uncredit = (tn / predict_false)[-1]
+    # f_value_uncredit = 2 / (1 / tnr[-1] + 1 / precision_uncredit)
+    # f_value = np.append(f_value_B, f_value_uncredit)
+    # print("tpr: ", tpr)
+    # print("fpr: ", fpr)
+    # print("fnr: ", fnr)
+    # print("tnr: ", tnr)
+    # print('F: ', f_value, 'average F:', np.average(f_value))
 
 if __name__ == '__main__':
 
@@ -146,18 +146,16 @@ if __name__ == '__main__':
 
     # subtrain or train
     if vali_or_test == 'vali':
-        time = 22
+        time = 8
     else:
-        time = 25
+        time = 10
 
-    f = open('../../RNN/data_preprocess/course_id.pkl', 'rb')
-    course_id = pickle.load(f)['course_id']
-    f = open('../../RNN2/data_preprocess/major_id.pkl', 'rb')
-    major_id = pickle.load(f)['major_id']
+    course_id = pd.read_msgpack("course_df.msg")
     dim_input_course = len(course_id)
     dim_input_grade = len(course_id) * 4
-    dim_input_major = len(major_id)
-    f.close()
+    # dim_input_major = len(major_id)
+    # f.close()
+    dim_input_major = 2
 
     vali_data = get_data_from_condense_seq(time)[1]
     vali_data_index = torch.IntTensor(np.array(range(vali_data.shape[0])))

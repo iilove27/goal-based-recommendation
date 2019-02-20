@@ -30,16 +30,19 @@ def accuracy(output, out_len, label):
     hit1 = len(l1) - len(torch.nonzero(real_label1 - real_output1))
     accuracy1 = hit1 / float(len(l1))
 
-    real_label2 = real_label[:, 2:]
-    real_output2 = real_output[:, 2:]
-    l2 = torch.sum(real_label2, dim=1)
-    l2 = torch.nonzero(l2).view(-1)
+    # real_label2 = real_label[:, 2:]
+    # real_output2 = real_output[:, 2:]
+    # l2 = torch.sum(real_label2, dim=1)
+    # l2 = torch.nonzero(l2).view(-1)
 
-    real_output2 = real_output2[l2]
-    real_output2 = real_output2.max(dim=1)[1]
-    real_label2 = torch.nonzero(real_label2)[:, 1]
-    hit2 = len(l2) - len(torch.nonzero(real_label2 - real_output2))
-    accuracy2 = hit2 / float(len(l2))
+    # real_output2 = real_output2[l2]
+    # real_output2 = real_output2.max(dim=1)[1]
+    # real_label2 = torch.nonzero(real_label2)[:, 1]
+    # hit2 = len(l2) - len(torch.nonzero(real_label2 - real_output2))
+    # accuracy2 = hit2 / float(len(l2))
+    hit2 = 0
+    accuracy2 = 0
+    l2 = [0]
     accuracy = (hit1 + hit2) / float(len(l1) + len(l2))
     return accuracy1, accuracy2, accuracy, len(l1), len(l2)
 
