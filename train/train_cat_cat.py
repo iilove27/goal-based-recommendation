@@ -142,9 +142,9 @@ if __name__ == '__main__':
 
     # subtrain or train
     if train_or_subtrain == 'subtrain':
-        time = 8
-    else:
         time = 10
+    else:
+        time = 12
 
     # load data
     print("Load data")

@@ -147,9 +147,9 @@ if __name__ == '__main__':
 
     # subtrain or train
     if vali_or_test == 'vali':
-        time = 8
-    else:
         time = 10
+    else:
+        time = 12
 
     course_id = pd.read_msgpack("course_df.msg")
     dim_input_course = len(course_id)
